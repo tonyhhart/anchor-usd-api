@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
@@ -13,11 +13,13 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_authenticate_using_the_login_screen()
     {
-        $user = User::factoryCreate();
+        $user = User::factoryCreate([
+            'password' => Hash::make('12345678')
+        ]);
 
         $response = $this->json('POST', '/login', [
             'email' => $user->email,
-            'password' => 'password',
+            'password' => '12345678',
         ]);
 
         $response->dump();
@@ -25,8 +27,10 @@ class AuthenticationTest extends TestCase
         $response->assertStatus(200);
 
         $response->assertJsonStructure([
-            'id',
-            'api_token'
+            'data' => [
+                'id',
+                'api_token'
+            ]
         ]);
     }
 

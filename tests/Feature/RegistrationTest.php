@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -24,8 +23,10 @@ class RegistrationTest extends TestCase
         $response->assertStatus(201);
 
         $response->assertJsonStructure([
-            'id',
-            'api_token'
+            'data' => [
+                'id',
+                'api_token'
+            ]
         ]);
     }
 }
