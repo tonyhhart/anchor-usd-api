@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -229,5 +229,28 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+
+    'available_coins' => [
+        'BTC',
+        'ETH',
+        'XRP',
+        'XLM',
+        'LTC',
+        'BCH',
+        'ETC',
+        'EOS',
+        'REP',
+        'BAT',
+        'LINK',
+        'XTZ',
+        'ATOM',
+        'DASH',
+        'OMG',
+        'ZRX',
+        'KNC',
+        'DAI',
+        'USDC',
+        'USDT',
+    ]
 
 ];

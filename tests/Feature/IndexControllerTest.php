@@ -23,26 +23,7 @@ class IndexControllerTest extends TestCase
 
         $response->assertJsonStructure([
             'data' => [
-                [
-                    'CoinModel' => [
-                        "id",
-                        "name",
-                        "fullname",
-                        "internal",
-                        "image",
-                        "image_url",
-                    ],
-                    'CoinInfo'  => [
-                        "Id",
-                        "Name",
-                        "FullName",
-                        "Internal",
-                        "ImageUrl",
-                        "Url",
-                        "Algorithm",
-                        "ProofType",
-                    ]
-                ]
+
             ]
         ]);
     }

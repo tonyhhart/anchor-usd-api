@@ -28,4 +28,17 @@ class CryptoCompareAPI
         ]);
     }
 
+    public static function coinlist(): \Illuminate\Http\Client\Response
+    {
+        return self::get('all/coinlist');
+    }
+
+    public static function prices($tsym = ['USD']): \Illuminate\Http\Client\Response
+    {
+        return self::get('pricemultifull', [
+            'fsyms' => implode(',', config('app.available_coins', [])),
+            'tsyms' => implode(',', $tsym),
+        ]);
+    }
+
 }

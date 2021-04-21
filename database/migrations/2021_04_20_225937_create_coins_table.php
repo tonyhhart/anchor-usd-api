@@ -16,11 +16,15 @@ class CreateCoinsTable extends Migration
         Schema::create('coins', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('symbol');
+            $table->string('coinname');
             $table->string('fullname');
-            $table->string('internal');
+            $table->text('description');
             $table->string('image')->nullable();
-            $table->string('type');
-            $table->string('documenttype');
+            $table->decimal('usd_price', 30)->nullable();
+            $table->decimal('usd_change_pct_day', 5)->nullable();
+            $table->decimal('usd_change_pct_24_hours', 5)->nullable();
+            $table->decimal('usd_change_pct_hour', 5)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

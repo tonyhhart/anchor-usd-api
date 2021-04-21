@@ -15,9 +15,9 @@ class CoinSeeder extends Seeder
      */
     public function run()
     {
-        $response = CryptoCompareAPI::index('100');
+        $response = CryptoCompareAPI::coinlist();
 
-        if ($response->json('Message') === 'Success') {
+        if ($response->json('Response') === 'Success') {
             foreach ($response->json('Data') as $data) {
                 Coin::createFromApi($data);
             }
