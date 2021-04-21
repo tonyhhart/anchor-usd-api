@@ -17,8 +17,9 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'Tony Hart',
-                'email' => 'tonyzoof@gmail.com',
+                'name'      => 'Tony Hart',
+                'email'     => 'tonyzoof@gmail.com',
+                'api_token' => '123',
             ]
         ];
 

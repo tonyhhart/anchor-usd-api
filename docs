@@ -1,0 +1,1 @@
+yes | php artisan ide-helper:models

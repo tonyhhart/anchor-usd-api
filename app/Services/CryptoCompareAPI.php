@@ -20,12 +20,12 @@ class CryptoCompareAPI
             ->get(self::ENDPOINT . $endpoint, $query);
     }
 
-    public static function index()
+    public static function index($limit = '10'): \Illuminate\Http\Client\Response
     {
         return self::get('top/totalvolfull', [
-            'limit' => '10',
+            'limit' => $limit,
             'tsym' => 'USD',
-        ])->json();
+        ]);
     }
 
 }
