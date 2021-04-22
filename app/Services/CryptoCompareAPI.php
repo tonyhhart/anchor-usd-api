@@ -24,7 +24,7 @@ class CryptoCompareAPI
     {
         return self::get('top/totalvolfull', [
             'limit' => $limit,
-            'tsym' => 'USD',
+            'tsym'  => 'USD',
         ]);
     }
 
@@ -41,12 +41,24 @@ class CryptoCompareAPI
         ]);
     }
 
-    public static function history($from, $endpoint = 'histominute', $limit = 60 * 24, $to = 'USD'): \Illuminate\Http\Client\Response
+    public static function history($from, $period, $to = 'USD'): \Illuminate\Http\Client\Response
     {
+        $endpoint = match ($period) {
+            'hour', 'day' => 'histominute',
+            'week', 'month' => 'histohour',
+        };
+
+        $limit = match ($period) {
+            'hour' => 60,
+            'day' => 60 * 24,
+            'week' => 24 * 7,
+            'month' => 24 * 30,
+        };
+
         return self::get($endpoint, [
-            'fsym' => $from,
-            'tsym' => $to,
-            'limit' => 2000
+            'fsym'  => $from,
+            'tsym'  => $to,
+            'limit' => $limit
         ]);
     }
 
