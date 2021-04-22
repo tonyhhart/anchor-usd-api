@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\IndexController;
+use App\Http\Controllers\CoinsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +24,6 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store'])
 
 Route::middleware('auth:api')->group(function () {
 
-    Route::get('/index', [IndexController::class, 'index']);
+    Route::resource('/coins', CoinsController::class);
 
 });

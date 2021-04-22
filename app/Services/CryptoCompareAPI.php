@@ -41,4 +41,13 @@ class CryptoCompareAPI
         ]);
     }
 
+    public static function history($from, $endpoint = 'histominute', $limit = 60 * 24, $to = 'USD'): \Illuminate\Http\Client\Response
+    {
+        return self::get($endpoint, [
+            'fsym' => $from,
+            'tsym' => $to,
+            'limit' => 2000
+        ]);
+    }
+
 }
