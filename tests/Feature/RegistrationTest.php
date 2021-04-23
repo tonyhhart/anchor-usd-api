@@ -11,8 +11,7 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register()
     {
-        $response = $this->json('POST', '/register', [
-            'name' => 'Test User',
+        $response = $this->json('POST', '/api/register', [
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
