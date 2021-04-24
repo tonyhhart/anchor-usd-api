@@ -36,7 +36,7 @@ class CoinsController extends Controller
     public function show(Request $request, $id)
     {
         $period = $request->get('period', 'day');
-        $coin = Coin::query()->firstOrFail();
+        $coin = Coin::query()->find($id);
 
         $coin->historic = Cache::remember("show_{$period}_{$id}", now()->addMinute(), function () use ($coin, $period) {
             $response = CryptoCompareAPI::history($coin->symbol, $period);
