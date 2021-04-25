@@ -14,8 +14,8 @@ class CreateUserInfosTable extends Migration
     public function up()
     {
         Schema::create('user_infos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('user_id');
+            $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->json('coins_order')->nullable();
             $table->timestamps();
 

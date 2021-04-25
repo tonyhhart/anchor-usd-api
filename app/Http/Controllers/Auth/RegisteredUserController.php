@@ -36,6 +36,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return UserResource::make($user);
+        return UserResource::make($user->load('info'));
     }
 }
