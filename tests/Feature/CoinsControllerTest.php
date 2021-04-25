@@ -21,7 +21,7 @@ class CoinsControllerTest extends TestCase
         $response = $this->withHeaders(['Authorization' => "Bearer {$user->api_token}"])
             ->json('GET', '/api/coins');
 
-        $response->assertStatus(200);
+        $response->assertSuccessful();
 
         $response->assertJsonStructure([
             'data' => [
@@ -40,7 +40,7 @@ class CoinsControllerTest extends TestCase
                     "created_at",
                     "updated_at",
                     "deleted_at",
-                    "image_url",
+                    "image_url"
                 ]
             ]
         ]);
@@ -59,7 +59,7 @@ class CoinsControllerTest extends TestCase
 
         $response->dump();
 
-        $response->assertStatus(200);
+        $response->assertSuccessful();
 
         $response->assertJsonStructure([
             'data' => [
@@ -78,6 +78,12 @@ class CoinsControllerTest extends TestCase
                 "updated_at",
                 "deleted_at",
                 "image_url",
+                "historic" => [
+                    [
+                        "time",
+                        "close"
+                    ]
+                ]
             ]
         ]);
     }

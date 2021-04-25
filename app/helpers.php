@@ -58,3 +58,14 @@ if (!function_exists('dominant_color')) {
         return Color::fromIntToHex(collect($colors)->keys()->first());
     }
 }
+
+
+if (!function_exists('current_user')) {
+    /**
+     * @return \App\Models\User
+     */
+    function current_user()
+    {
+        return \Illuminate\Support\Facades\Auth::user();
+    }
+}

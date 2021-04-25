@@ -19,15 +19,23 @@ class CoinsController extends Controller
             foreach ($response->json('RAW', []) as $symbol => $data) {
                 Coin::query()->whereSymbol($symbol)
                     ->update([
-                        'usd_price'               => $data['USD']['PRICE'] ?? 0,
-                        'usd_change_pct_day'      => $data['USD']['CHANGEPCTDAY'] ?? 0,
+                        'usd_price' => $data['USD']['PRICE'] ?? 0,
+                        'usd_change_pct_day' => $data['USD']['CHANGEPCTDAY'] ?? 0,
                         'usd_change_pct_24_hours' => $data['USD']['CHANGEPCT24HOUR'] ?? 0,
-                        'usd_change_pct_hour'     => $data['USD']['CHANGEPCTHOUR'] ?? 0,
+                        'usd_change_pct_hour' => $data['USD']['CHANGEPCTHOUR'] ?? 0,
                     ]);
             }
 
             return Coin::all();
         });
+
+        $ids = current_user()->info->coins_order ?? [];
+
+        $coins = $coins->filter(fn(Coin $c) => in_array($c->id, $ids))
+            ->sortBy(fn (Coin $c) => array_search($c->id, $ids))
+            ->concat(
+                $coins->filter(fn(Coin $c) => !in_array($c->id, $ids))
+            );
 
         return CoinResource::collection($coins);
     }
@@ -55,6 +63,6 @@ class CoinsController extends Controller
                 ->toArray();
         });
 
-        return CoinResource::make($coin, 1);
+        return CoinResource::make($coin);
     }
 }
