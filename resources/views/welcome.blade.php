@@ -20,7 +20,7 @@
             }
         </style>
     </head>
-    <body class="antialiased" style="overflow: hidden">
+    <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center">
             <div style="width: 100%;height: 100vh;max-width: 414px;max-height: 736px;box-shadow: -1px 10px 31px 8px rgba(0,0,0,0.25);">
                 <iframe style="width: 100%; height: 100%;" src="https://anchor-usd-app.herokuapp.com"></iframe>
